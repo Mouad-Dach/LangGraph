@@ -1,0 +1,70 @@
+RAPPORT ANNUEL — ENTREPRISE TECH MAROC SA
+==========================================
+Exercice 2024
+
+PRÉSENTATION DE L'ENTREPRISE
+------------------------------
+Tech Maroc SA est une entreprise spécialisée dans le développement
+de solutions logicielles pour les entreprises du secteur bancaire et
+des télécommunications au Maroc et en Afrique du Nord. Fondée en 2010
+à Casablanca, elle compte aujourd'hui 450 employés répartis sur 3 sites :
+Casablanca, Rabat et Marrakech.
+
+CHIFFRES CLÉS 2024
+-------------------
+- Chiffre d'affaires : 120 millions MAD (croissance +18% vs 2023)
+- Résultat net : 22 millions MAD
+- Effectif total : 450 employés
+- Nouveaux clients : 35 entreprises
+- Part du marché Maroc : 23%
+
+PRODUITS ET SERVICES
+---------------------
+1. TechBank Suite : Solution ERP bancaire modulaire
+   - Module gestion des crédits
+   - Module gestion des dépôts
+   - Module conformité réglementaire (Bank Al-Maghrib)
+
+2. TeleManage Pro : Plateforme de gestion des abonnés télécom
+   - Gestion des contrats B2B
+   - Facturation automatisée
+   - Support client intégré
+
+3. DataAnalytics Cloud : Plateforme d'analyse de données
+   - Tableaux de bord temps réel
+   - Rapports automatisés
+   - Intégration avec les systèmes existants
+
+POLITIQUE RH ET GESTION DES EMPLOYÉS
+--------------------------------------
+Grille salariale 2024 :
+- Développeur Junior  : 6 000 – 8 000 MAD/mois
+- Développeur Senior  : 10 000 – 15 000 MAD/mois
+- Chef de Projet       : 15 000 – 20 000 MAD/mois
+- Directeur Technique  : 25 000 – 35 000 MAD/mois
+
+Avantages sociaux :
+- Mutuelle santé prise en charge à 80%
+- Prime annuelle : 1 à 2 mois de salaire selon performance
+- Formation continue : budget de 5 000 MAD/employé/an
+- Télétravail : 2 jours/semaine pour les postes éligibles
+
+Critères d'attribution de la prime annuelle :
+- Ancienneté >= 1 an : éligible à 50% de la prime
+- Ancienneté >= 3 ans : éligible à 100% de la prime
+- Note d'évaluation >= 14/20 : prime complète versée
+- Note d'évaluation < 10/20  : prime non versée
+
+PROJETS STRATÉGIQUES 2025
+---------------------------
+1. Expansion en Afrique subsaharienne (Sénégal, Côte d'Ivoire)
+2. Lancement de TechBank Mobile (application bancaire B2C)
+3. Certification ISO 27001 pour la sécurité des données
+4. Recrutement de 80 ingénieurs supplémentaires
+
+CONTACT
+--------
+Siège social : 45 Boulevard Zerktouni, Casablanca 20000
+Email        : contact@techmaroc.ma
+Téléphone    : +212 522 123 456
+Site web     : www.techmaroc.ma

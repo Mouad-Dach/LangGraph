@@ -1,0 +1,120 @@
+====================================================
+INTRODUCTION À LANGGRAPH ET AUX AGENTS LLM
+====================================================
+
+LangGraph est un framework open-source développé par LangChain pour créer des
+applications d'intelligence artificielle basées sur des graphes d'état. Il permet
+de construire des agents complexes capables de raisonner, planifier et exécuter
+des actions en plusieurs étapes.
+
+CONCEPTS FONDAMENTAUX DE LANGGRAPH
+-----------------------------------
+
+1. StateGraph (Graphe d'État)
+Le StateGraph est le composant central de LangGraph. Il définit un graphe orienté
+où chaque nœud représente une étape de traitement et les arêtes définissent le flux
+d'exécution. L'état partagé circule entre les nœuds, permettant à chaque étape de
+lire et modifier les données.
+
+2. Nœuds (Nodes)
+Les nœuds sont des fonctions Python qui reçoivent l'état en entrée et retournent
+une mise à jour de l'état. Chaque nœud effectue une action spécifique : appel LLM,
+recherche dans une base de données, exécution d'un outil, etc.
+
+3. Arêtes (Edges)
+Les arêtes définissent les connexions entre les nœuds. Il existe deux types :
+- Arêtes directes (add_edge) : flux déterministe de A vers B
+- Arêtes conditionnelles (add_conditional_edges) : routage dynamique selon l'état
+
+4. Checkpointing et Mémoire
+LangGraph supporte la persistance d'état via des checkpointers (MemorySaver,
+SqliteSaver, etc.). Cela permet de reprendre une conversation là où elle s'est
+arrêtée, même après un redémarrage.
+
+====================================================
+ARCHITECTURE RAG (RETRIEVAL AUGMENTED GENERATION)
+====================================================
+
+Le RAG est une technique qui améliore les LLMs en leur fournissant des documents
+pertinents récupérés depuis une base de données vectorielle au moment de la
+génération de la réponse.
+
+COMPOSANTS D'UN SYSTÈME RAG
+-----------------------------
+
+1. Ingestion des Documents
+Les documents sont découpés en chunks, transformés en vecteurs d'embeddings puis
+stockés dans une base vectorielle comme ChromaDB, Pinecone ou Weaviate.
+
+2. Retrieval (Récupération)
+Quand une question est posée, elle est transformée en vecteur et comparée avec les
+vecteurs des documents. Les documents les plus similaires (cosine similarity) sont
+récupérés.
+
+3. Augmentation et Génération
+Les documents récupérés sont ajoutés au prompt du LLM comme contexte. Le LLM
+génère ensuite une réponse informée par ces documents.
+
+AGENTIC RAG AVEC LANGGRAPH
+---------------------------
+
+L'Agentic RAG ajoute une couche d'intelligence au processus RAG traditionnel :
+
+- Grade des documents : L'agent évalue si les documents récupérés sont vraiment
+  pertinents pour la question posée.
+  
+- Reformulation de requête : Si les documents ne sont pas pertinents, l'agent
+  reformule la question pour améliorer la recherche.
+  
+- Recherche web : En dernier recours, l'agent peut effectuer une recherche sur
+  internet pour trouver des informations plus récentes ou spécifiques.
+
+- Génération adaptive : La réponse est générée uniquement quand l'agent a
+  suffisamment de contexte pertinent.
+
+====================================================
+CHROMADB : BASE DE DONNÉES VECTORIELLE
+====================================================
+
+ChromaDB est une base de données vectorielle open-source, légère et facile à
+utiliser. Elle est particulièrement adaptée pour les projets de RAG en local.
+
+Caractéristiques principales :
+- Stockage persistant ou en mémoire
+- Support des métadonnées
+- Filtrage par métadonnées
+- Intégration native avec LangChain
+- API simple et intuitive
+
+====================================================
+STREAMLIT : INTERFACES WEB POUR LLM
+====================================================
+
+Streamlit est un framework Python pour créer des interfaces web interactives sans
+connaissances en frontend (HTML, CSS, JavaScript). Il est très populaire pour les
+applications de data science et d'IA.
+
+Fonctionnalités clés pour les chatbots :
+- st.chat_message() : Affiche les messages de chat
+- st.chat_input() : Champ de saisie pour l'utilisateur
+- st.session_state : Persistance des données entre les interactions
+- st.spinner() : Indicateur de chargement pendant les appels API
+- st.expander() : Sections dépliables pour afficher les sources
+
+====================================================
+BONNES PRATIQUES LANGGRAPH
+====================================================
+
+1. Toujours limiter les itérations des boucles pour éviter les boucles infinies.
+
+2. Utiliser des schémas Pydantic pour les sorties structurées des LLMs
+   (structured outputs).
+
+3. Définir clairement l'état avec TypedDict pour une meilleure lisibilité et
+   la validation des types.
+
+4. Utiliser LangSmith pour le tracing et le debugging en production.
+
+5. Tester chaque nœud individuellement avant d'assembler le graphe complet.
+
+6. Utiliser LangGraph Studio pour visualiser et débugger les graphes complexes.

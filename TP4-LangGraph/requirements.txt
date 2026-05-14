@@ -1,0 +1,25 @@
+# Core LangGraph & LangChain
+langgraph>=0.2.0
+langchain>=0.3.0
+langchain-openai>=0.2.0
+langchain-community>=0.3.0
+langchain-core>=0.3.0
+
+# Vector Store
+chromadb>=0.5.0
+
+# PDF Loading
+pypdf>=4.0.0
+
+# Web Interface
+streamlit>=1.38.0
+
+# Environment & Tracing
+python-dotenv>=1.0.0
+langsmith>=0.1.0
+
+# LangGraph Studio
+langgraph-cli>=0.1.0
+
+# Embeddings / Tokens
+tiktoken>=0.7.0

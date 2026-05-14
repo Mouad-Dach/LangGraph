@@ -1,0 +1,89 @@
+GUIDE TECHNIQUE — LANGGRAPH ET INTELLIGENCE ARTIFICIELLE AGENTIQUE
+===================================================================
+Document de référence — Formation IA 2024
+
+CHAPITRE 1 : INTRODUCTION À LANGGRAPH
+---------------------------------------
+LangGraph est un framework open-source développé par l'équipe LangChain
+pour construire des applications LLM sous forme de graphes d'état orientés.
+Il est particulièrement adapté aux systèmes multi-agents, aux workflows
+complexes avec boucles, et aux applications nécessitant de la persistance.
+
+Pourquoi LangGraph plutôt que LangChain simple ?
+LangChain est excellent pour le prototypage rapide et les chaînes simples
+(A → B → C). Cependant, dès qu'un workflow nécessite des boucles, des
+branches conditionnelles complexes, ou un état persistant entre plusieurs
+appels, LangGraph offre un contrôle beaucoup plus précis.
+
+CHAPITRE 2 : CONCEPTS FONDAMENTAUX
+-------------------------------------
+2.1 L'État (State)
+L'état est une structure TypedDict partagée par tous les nœuds du graphe.
+Chaque nœud peut lire et mettre à jour l'état. Les réducteurs (reducers)
+définissent comment les mises à jour sont fusionnées.
+
+2.2 Les Nœuds (Nodes)
+Un nœud est une fonction Python qui reçoit l'état et retourne une mise
+à jour partielle ou complète de cet état.
+
+2.3 Les Arêtes (Edges)
+- Arêtes directes : add_edge(A, B) — passage déterministe de A vers B
+- Arêtes conditionnelles : add_conditional_edges(A, router_fn, mapping)
+  Le router_fn analyse l'état et retourne une clé du mapping.
+
+2.4 Le Pattern ReAct
+ReAct (Reasoning + Acting) est un pattern où l'agent alterne entre :
+- Reasoning : le LLM analyse et décide quelle action effectuer
+- Acting : exécution de l'action (appel d'outil)
+LangGraph modélise cela avec une boucle : assistant → tools → assistant
+
+CHAPITRE 3 : RAG AGENTIQUE
+-----------------------------
+3.1 RAG Classique
+Étapes : Question → Embedding → Recherche vectorielle → Contexte → Réponse
+Limite : une seule recherche, pas d'adaptation si le contexte est insuffisant.
+
+3.2 RAG Agentique
+L'agent décompose les questions complexes en sous-questions, appelle le
+retriever plusieurs fois avec des requêtes différentes, et synthétise les
+résultats. Il peut aussi utiliser d'autres outils (recherche web, email, etc.)
+
+3.3 Outils d'un Agent RAG
+- retriever_tool : recherche dans la base vectorielle (ChromaDB)
+- web_search_tool : recherche sur internet pour informations récentes
+- email_tool : envoi de notifications par email
+- calculator_tool : calculs mathématiques
+
+CHAPITRE 4 : CHROMADB
+-----------------------
+ChromaDB est une base de données vectorielle légère et open-source.
+Elle stocke les documents sous forme de vecteurs d'embeddings et permet
+une recherche par similarité cosinus très efficace.
+
+Étapes d'indexation :
+1. Chargement des documents (PDF, TXT, etc.)
+2. Découpage en chunks (RecursiveCharacterTextSplitter)
+3. Génération des embeddings (OpenAIEmbeddings)
+4. Stockage dans ChromaDB avec persistance sur disque
+
+CHAPITRE 5 : LANGSMITH
+------------------------
+LangSmith est la plateforme de monitoring et debugging de LangChain.
+Elle permet de :
+- Tracer chaque appel LLM et chaque étape du graphe
+- Visualiser les inputs/outputs de chaque nœud
+- Mesurer les latences et les coûts
+- Débugger les comportements inattendus
+
+Configuration : définir LANGCHAIN_TRACING_V2=true et LANGCHAIN_API_KEY
+dans le fichier .env.
+
+CHAPITRE 6 : LANGGRAPH STUDIO
+-------------------------------
+LangGraph Studio est une interface graphique qui permet de :
+- Visualiser le graphe en temps réel
+- Tester des workflows en envoyant des états d'entrée
+- Voir l'état évoluer nœud par nœud
+- Identifier les branches empruntées
+
+Lancement : langgraph dev (nécessite le fichier langgraph.json)
